@@ -7,16 +7,6 @@ const List = styled.ul`
   width: 400px;
 `;
 
-// const ContactList = ({ contacts, onDeleteContact }) => (
-//   <List>
-//     {contacts.map(contact => (
-//       <li key={contact.id}>
-//         <ContactListItem contact={contact} onDeleteContact={onDeleteContact} />
-//       </li>
-//     ))}
-//   </List>
-// );
-
 const getCurrentPhonebook = (allContacts, filter) => {
   const normilizedFilter = filter.toLowerCase();
   return allContacts.filter(contact =>

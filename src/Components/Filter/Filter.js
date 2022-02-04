@@ -29,16 +29,6 @@ const FormHeading = styled.h3`
   margin-bottom: 10px;
 `;
 
-// export default function Filter(value, onChange) {
-
-//   return (
-//     <FormItem>
-//       <FormHeading>Find contacts by name</FormHeading>
-//       <FormInput type="text" value={value} onChange={onChange} />
-//     </FormItem>
-//   )
-// }
-
 export default function Filter() {
   const value = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();

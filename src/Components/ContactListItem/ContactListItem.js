@@ -43,18 +43,6 @@ const DeleteButton = styled.button`
   }
 `;
 
-// const ContactListItem = ({ contact, onDeleteContact }) => (
-//   <ItemWrapper>
-//     <ContactInfo>
-//       <ContactName>{contact.name}</ContactName>
-//       <ContactNumber>{contact.number}</ContactNumber>
-//     </ContactInfo>
-//     <DeleteButton onClick={() => onDeleteContact(contact.id)}>
-//       Delete
-//     </DeleteButton>
-//   </ItemWrapper>
-// );
-
 export default function ContactListItem({ contact }) {
   const dispatch = useDispatch();
   return (
@@ -76,5 +64,4 @@ ContactListItem.propTypes = {
     name: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired,
   }),
-  // onDeleteContact: PropTypes.func.isRequired,
 };
