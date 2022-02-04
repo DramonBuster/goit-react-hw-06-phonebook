@@ -1,3 +1,5 @@
+import { useSelector, useDispatch } from 'react-redux';
+import * as actions from '../../redux/contacts/contacts-action';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -27,16 +29,30 @@ const FormHeading = styled.h3`
   margin-bottom: 10px;
 `;
 
-const Filter = ({ value, onChange }) => (
-  <FormItem>
-    <FormHeading>Find contacts by name</FormHeading>
-    <FormInput type="text" value={value} onChange={onChange} />
-  </FormItem>
-);
+// export default function Filter(value, onChange) {
+
+//   return (
+//     <FormItem>
+//       <FormHeading>Find contacts by name</FormHeading>
+//       <FormInput type="text" value={value} onChange={onChange} />
+//     </FormItem>
+//   )
+// }
+
+export default function Filter() {
+  const value = useSelector(state => state.contacts.filter);
+  const dispatch = useDispatch();
+  const onChange = event => dispatch(actions.filterContact(event.target.value));
+
+  return (
+    <FormItem>
+      <FormHeading>Find contacts by name</FormHeading>
+      <FormInput type="text" value={value} onChange={onChange} />
+    </FormItem>
+  );
+}
 
 Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
-
-export default Filter;

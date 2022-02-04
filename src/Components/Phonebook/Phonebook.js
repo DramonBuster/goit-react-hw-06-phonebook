@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { nanoid } from 'nanoid';
+// import { useMemo } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { nanoid } from 'nanoid';
 import styled from 'styled-components';
-import data from '../../data/contacts.json';
+// import data from '../../data/contacts.json';
 import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
 import ContactForm from '../ContactForm/ContactForm';
+// import * as actions from '../../redux/contacts/contacts-action';
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,66 +32,79 @@ const SubHeading = styled.h2`
 `;
 
 export default function Phonebook() {
-  const [contacts, setContacts] = useState(data);
-  const [filter, setFilter] = useState('');
+  // const dispatch = useDispatch();
+  // const contacts = useSelector(state => state.items);
+  // const filter = useSelector(state => state.filter);
 
-  const addContact = ({ name, number }) => {
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
+  // const changeFilter = event => {
+  //   dispatch(actions.filterContact(event.target.value));
+  // };
 
-    if (
-      contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase(),
-      )
-    ) {
-      alert(`${name} is already in contacts`);
-      return;
-    }
+  // const addContact = ({ name, number }) => {
+  //   const contact = {
+  //     id: nanoid(),
+  //     name,
+  //     number,
+  //   };
 
-    setContacts([contact, ...contacts]);
-  };
+  //   if (
+  //     contacts.find(
+  //       contact => contact.name.toLowerCase() === name.toLowerCase(),
+  //     )
+  //   ) {
+  //     alert(`${name} is already in contacts`);
+  //     return;
+  //   }
 
-  const deleteContact = contactId => {
-    setContacts(contacts.filter(contact => contact.id !== contactId));
-  };
+  //   dispatch(actions.addContact(contact));
+  // };
 
-  const changeFilter = event => {
-    setFilter(event.currentTarget.value);
-  };
+  // const deleteContact = contactId => {
+  //   setContacts(contacts.filter(contact => contact.id !== contactId));
+  // };
 
-  const normalizedFilter = useMemo(() => filter.toLowerCase(), [filter]);
+  // const deleteContact = event => {
+  //   dispatch(
+  //     actions.deleteContact(
+  //       contacts.filter(
+  //         element =>
+  //           element.name !==
+  //           event.target.parentNode.childNodes[2].nodeValue.trim(),
+  //       ),
+  //     ),
+  //   );
+  //   dispatch(actions.filterContact(''));
+  // };
 
-  const getCurrentPhonebook = () => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter.trim()),
-    );
-  };
+  // const normalizedFilter = useMemo(() => filter.toLowerCase(), [filter]);
 
-  useEffect(() => {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-    if (parsedContacts) {
-      setContacts(parsedContacts);
-    }
-  }, []);
+  // const getCurrentPhonebook = () => {
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizedFilter.trim()),
+  //   );
+  // };
 
-  useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   const contacts = localStorage.getItem('contacts');
+  //   const parsedContacts = JSON.parse(contacts);
+  //   if (parsedContacts) {
+  //     setContacts(parsedContacts);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
+
+  // const contactList = normalizedFilter ? getCurrentPhonebook() : contacts;
 
   return (
     <Wrapper>
       <Heading>Phonebook</Heading>
-      <ContactForm onAddContact={addContact} />
+      <ContactForm />
       <SubHeading>Contacts</SubHeading>
-      <Filter value={filter} onChange={changeFilter} />
-      <ContactList
-        contacts={getCurrentPhonebook()}
-        onDeleteContact={deleteContact}
-      />
+      <Filter />
+      <ContactList />
     </Wrapper>
   );
 }
